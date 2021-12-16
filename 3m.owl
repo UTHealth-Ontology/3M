@@ -12,8 +12,8 @@
         <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
         <terms:contributor>LaTisha Thomas</terms:contributor>
         <terms:contributor>Rebecca Mauldin</terms:contributor>
-        <terms:creator>Daniela Dally; Tuan Amith</terms:creator>
-        <rdfs:label>an ontology model to express social and economic determinants on individual health</rdfs:label>
+        <terms:creator>Daniela Dally, Tuan Amith</terms:creator>
+        <rdfs:comment>an ontology model to express social and economic determinants on individual health</rdfs:comment>
     </owl:Ontology>
     
 
@@ -413,7 +413,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Climate_Variability -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Climate_Variability">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Climate_Change"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
     </owl:Class>
     
 
@@ -787,7 +787,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Extreme_High_Temperature -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Extreme_High_Temperature">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Climate_Change"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
     </owl:Class>
     
 
@@ -1605,7 +1605,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Physical_Assault -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Physical_Assault">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Domestic_Violence"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Crime_Against_Person"/>
     </owl:Class>
     
 
@@ -2183,7 +2183,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Temperature_Level_Change -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Temperature_Level_Change">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Climate_Change"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
     </owl:Class>
     
 
@@ -2349,7 +2349,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Weather_Pattern -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Weather_Pattern">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Climate_Change"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
     </owl:Class>
     
 
