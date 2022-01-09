@@ -1,0 +1,5 @@
+http://purl.obolibrary.org/obo/RO_0002410 #causally related to
+http://purl.obolibrary.org/obo/RO_0002502 #depends on
+http://purl.obolibrary.org/obo/RO_0002323 #mereotopologically related to
+http://purl.obolibrary.org/obo/BFO_0000002 #continuant
+http://purl.obolibrary.org/obo/BFO_0000003 #occurrent
