@@ -1,19 +1,24 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/danie/ontologies/2021/10/untitled-ontology-15#"
      xml:base="http://www.semanticweb.org/danie/ontologies/2021/10/untitled-ontology-15"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-     xmlns:terms="http://purl.org/dc/terms/">
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://sbmi.uth.edu/ontology/3m">
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
         <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
         <terms:contributor>LaTisha Thomas</terms:contributor>
         <terms:contributor>Rebecca Mauldin</terms:contributor>
         <terms:creator>Daniela Dally, Tuan Amith</terms:creator>
-        <rdfs:comment>an ontology model to express social and economic determinants on individual health</rdfs:comment>
+        <rdfs:comment>an explortatory ontology model to express social and economic determinants on individual health. This artifact makes use of some light BFO concepts and properties to tie various domain concepts together.</rdfs:comment>
     </owl:Ontology>
     
 
@@ -31,19 +36,25 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#casual -->
 
-    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#casual"/>
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#casual">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#dependency -->
 
-    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#dependency"/>
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#dependency">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#parsimony -->
 
-    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#parsimony"/>
+    <owl:ObjectProperty rdf:about="http://sbmi.uth.edu/ontology/3m#parsimony">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:ObjectProperty>
     
 
 
@@ -58,21 +69,52 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Absolute_Location -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Absolute_Location">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Geographical_Location"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Academic_Degree -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Academic_Degree"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Academic_Degree">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Employment_Condition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Employment_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Access_to_Food -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Access_to_Food"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Access_to_Food">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Virtue"/>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Access_to_Healthcare -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Access_to_Healthcare"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Access_to_Healthcare">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Virtue"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Determinants_of_Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -95,7 +137,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Access_to_Recreational_Activity -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Access_to_Recreational_Activity">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Virtue"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Neighborhood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -111,15 +159,20 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Affordable_Housing -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Affordable_Housing">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Good_Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#African_American_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#African_American_Race_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#African_American_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#African_American_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -148,18 +201,26 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Alaskan_Native_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Alaskan_Native_Race_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Alaskan_Native_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Alaskan_Native_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#American_Indian_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Alcohol_Addiction -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#American_Indian_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Alcohol_Addiction">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Addiction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#American_Indian_Race_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#American_Indian_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -180,10 +241,18 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Asian_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Asexual_Sexual_Orientation -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Asian_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Asexual_Sexual_Orientation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Asian_Race_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Asian_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -207,7 +276,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Autism -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Autism">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disabilities"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disability"/>
     </owl:Class>
     
 
@@ -215,7 +284,21 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Availability_of_Confidant -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Availability_of_Confidant">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Network"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Baby_Boomer -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Baby_Boomer">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
     </owl:Class>
     
 
@@ -238,14 +321,27 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Behavioral_Health -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Behavioral_Health"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Behavioral_Health">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Mental_Health_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Belief -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Belief">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -261,7 +357,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Biological_Factor -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Biological_Factor">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -270,6 +371,26 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Biological_Sex">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Biological_Factor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Identity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Bisexual_Sexual_Orientation -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Bisexual_Sexual_Orientation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
     </owl:Class>
     
 
@@ -285,7 +406,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Bodily_Function -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Bodily_Function">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -322,14 +449,6 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Burning_of_Fossil_Fuels -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Burning_of_Fossil_Fuels">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
-    </owl:Class>
-    
-
-
     <!-- http://sbmi.uth.edu/ontology/3m#Bus_Ride -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Bus_Ride">
@@ -362,6 +481,15 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Chief_Executive_Officer -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Chief_Executive_Officer">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Working_Individual"/>
+        <skos:altLabel>CEO</skos:altLabel>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Chinese_Language -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Chinese_Language">
@@ -381,7 +509,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Clean_Water -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Clean_Water">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Good_Residence_Quality"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Water_Quality"/>
     </owl:Class>
     
 
@@ -418,9 +546,9 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Cognitive_Disabilities -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Cognitive_Disability -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Cognitive_Disabilities">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Cognitive_Disability">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Medical_Conditions"/>
     </owl:Class>
     
@@ -450,6 +578,14 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Command-based_Economy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Command-based_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Communication_Between_Body_Systems -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Communication_Between_Body_Systems">
@@ -466,18 +602,16 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Compulsive_Drinking -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Compulsive_Drinking">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Addiction"/>
-    </owl:Class>
-    
-
-
     <!-- http://sbmi.uth.edu/ontology/3m#Contaminated_Water -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Contaminated_Water">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Water_Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -492,7 +626,15 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Crime -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Crime"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Crime">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Safety"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -507,7 +649,8 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Crime_Level -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Crime_Level">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <skos:note>consider removing</skos:note>
     </owl:Class>
     
 
@@ -531,7 +674,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Cultural_Expression -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Cultural_Expression">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -539,7 +687,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Cultural_Tradition -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Cultural_Tradition">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cultural_Expression"/>
     </owl:Class>
     
 
@@ -563,7 +711,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Dementia -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Dementia">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disabilities"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disability"/>
     </owl:Class>
     
 
@@ -595,7 +743,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Diagnostic_Health_Service -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Diagnostic_Health_Service">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
@@ -626,19 +774,48 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Discrimination -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Discrimination"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Discrimination">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Behavior"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Disease -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Disease"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Disease">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Medical_Conditions"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Outcome"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Distance_to_Medical_Resources -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Distance_to_Medical_Resources"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Distance_to_Medical_Resources">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Medical_Treatment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Prescription_Drugs"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -661,14 +838,14 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Down_Syndrome -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Down_Syndrome">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disabilities"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cognitive_Disability"/>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Drug_Dependence -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Drug_Addiction -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Drug_Dependence">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Drug_Addiction">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Addiction"/>
     </owl:Class>
     
@@ -684,20 +861,42 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Economic_Growth -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Economic_Growth"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Economic_Growth">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Unemployment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Economy -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Economy"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Economy">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Education -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Education">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Factor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Outcome"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Effeminacy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Effeminacy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
     </owl:Class>
     
 
@@ -713,22 +912,30 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Emergency_Health_Service -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Emergency_Health_Service">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Employment -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Employment_Condition -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Employment">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Employment_Condition">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macroeconomic_Condition"/>
+        <skos:changeNote>merged to Employment Status?</skos:changeNote>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Employment_Status -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Employment_Status"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Employment_Status">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Income"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -750,13 +957,23 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Environmental_Determinant -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+    </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Ethnicity -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Environmental_Toxins -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Ethnicity">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Environmental_Toxins">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Ethnic_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Ethnic_Identity">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
     </owl:Class>
     
@@ -764,7 +981,9 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Exposure_to_Crime -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Exposure_to_Crime"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Exposure_to_Crime">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
     
 
 
@@ -803,7 +1022,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Family_Ties -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Family_Ties">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Network"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -826,7 +1051,30 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Food_Security -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Food_Security"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Food_Security">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poverty"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Fossil_Fuel -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Fossil_Fuel">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Toxins"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Fossil_Fuel_Combustion -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Fossil_Fuel_Combustion">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
+    </owl:Class>
     
 
 
@@ -838,17 +1086,17 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Gender -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gender">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
-    </owl:Class>
-    
-
-
     <!-- http://sbmi.uth.edu/ontology/3m#Gender_Attitude -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gender_Attitude">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Identity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -862,14 +1110,62 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Gender_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gender_Identity"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gender_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Generation_Alpha -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Generation_Alpha">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Generation_X -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Generation_X">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Generation_Y -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Generation_Y">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Generation_Z -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Generation_Z">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Generational_Age -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Generational_Age">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Age"/>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Geographical_Location -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Geographical_Location">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -878,6 +1174,22 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gestational_Diabetes">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Diabetes_Mellitus"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Gig_Economy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gig_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Global_Economy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Global_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
     </owl:Class>
     
 
@@ -893,7 +1205,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Government_Programs -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Government_Programs">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -909,7 +1221,23 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Graduate_Degree -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Graduate_Degree">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Academic_Degree"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#College_Degree"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Greatest_Generation -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Greatest_Generation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Green_Enconomy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Green_Enconomy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
     </owl:Class>
     
 
@@ -918,6 +1246,38 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Greenhouse_Gas">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Pollutant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002500"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Extreme_High_Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002500"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Fossil_Fuel_Combustion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Climate_Change_Action_Plan"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Gross_Domestic_Product -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gross_Domestic_Product">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#National_Economy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:altLabel>GDP</skos:altLabel>
     </owl:Class>
     
 
@@ -930,46 +1290,93 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Health -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Health_Care_Service -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Care_Service">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Healthcare"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Health_Inequities -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Inequities"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Inequities">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poverty"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Health_Literacy -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Literacy"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Literacy">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Outcome"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Health_Outcome -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Outcome"/>
-    
-
-
-    <!-- http://sbmi.uth.edu/ontology/3m#Health_Service -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Health_Outcome">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Education"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Determinants_of_Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Healthcare_Coverage -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Healthcare_Coverage"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Healthcare_Coverage">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Socioeconomic_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Healthcare"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Healthcare_System -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Healthcare_System">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Patient_Safety"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -986,6 +1393,14 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Height">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Body_Structure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Hetrosexual_Sexual_Orientation -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Hetrosexual_Sexual_Orientation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
     </owl:Class>
     
 
@@ -1022,17 +1437,32 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Hispanic_Ethnicity -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Hispanic_Ethnic_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Hispanic_Ethnicity">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ethnicity"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Hispanic_Ethnic_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ethnic_Identity"/>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#History_of_Incarceration -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#History_of_Incarceration"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#History_of_Incarceration">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#History_of_Incarceration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Homosexual_Sexual_Orientation -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Homosexual_Sexual_Orientation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
+    </owl:Class>
     
 
 
@@ -1055,7 +1485,23 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Human_Physiology -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Human_Physiology">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Hypermasculinity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Hypermasculinity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Hypomasculinity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Hypomasculinity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
     </owl:Class>
     
 
@@ -1070,14 +1516,32 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Income -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Income"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Income">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Socioeconomic_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poverty"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Income_Inequality -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Income_Inequality">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Income"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1092,14 +1556,22 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Individual_Behavior -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Individual_Behavior"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Individual_Behavior">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002608"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Vaccine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Individual_Factor -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Individual_Factor">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -1115,7 +1587,18 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Individual_Lifestyle -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Individual_Lifestyle">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Media_Culture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1124,6 +1607,12 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Inflation">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macroeconomic_Condition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Fiscal_Policy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1147,7 +1636,14 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Insufficient_Heating -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Insufficient_Heating">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Heating_Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1155,7 +1651,14 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Insufficient_Ventilation -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Insufficient_Ventilation">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ventillation_Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1203,7 +1706,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Laboratory_Testing -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Laboratory_Testing">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Diagnostic_Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Diagnostic_Health_Service"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1216,10 +1725,10 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Latino_Ethnicity -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Latino_Ethnic_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Latino_Ethnicity">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ethnicity"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Latino_Ethnic_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ethnic_Identity"/>
     </owl:Class>
     
 
@@ -1227,7 +1736,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Learning_Institution -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Learning_Institution">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Physical_Environment"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -1256,10 +1765,24 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Lost_Generation -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Lost_Generation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Lower_Socioeconomic_Class -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Lower_Socioeconomic_Class">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Class"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Exposure_to_Crime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1274,14 +1797,52 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Government_Programs"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Healthcare_System"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Macroeconomic_Policy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Multisectoral_Approach"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Public_Policy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Macroeconomic_Condition -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Macroeconomic_Condition">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Fiscal_Policy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1289,7 +1850,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Macroeconomic_Policy -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Macroeconomic_Policy">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Economic_Growth"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1310,6 +1876,22 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Market-based_Economy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Market-based_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Masculinity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Masculinity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Master_Degree -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Master_Degree">
@@ -1320,7 +1902,15 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Media_Culture -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Media_Culture"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Media_Culture">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cultural_Expression"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Lifestyle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1334,7 +1924,14 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Medical_Conditions -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Medical_Conditions"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Medical_Conditions">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Literacy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1346,23 +1943,96 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Mediterranean_Diet_Behavior -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Mediterranean_Diet_Behavior">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Dietary_Behavior"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Mental_Health_Literacy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Mental_Health_Literacy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Literacy"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Mental_Health_Status -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Mental_Health_Status">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Behavioral_Health"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Behavioral_Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Geographical_Location"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Physical_Environment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Psychosocial_Factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Biological_Factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Human_Physiology"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Lifestyle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Physical_Fitness"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1384,7 +2054,23 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Military_Service -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Military_Service"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Military_Service">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Mental_Health_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:changeNote>should this be a subclass of something?</skos:changeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Millennial -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Millennial">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
     
 
 
@@ -1399,7 +2085,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Moral -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Moral">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1415,7 +2106,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Multisectoral_Approach -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Multisectoral_Approach">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1436,16 +2132,31 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#National_Employment_Rates -->
+    <!-- http://sbmi.uth.edu/ontology/3m#National_Economy -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#National_Employment_Rates"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#National_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
+    </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Native_Hawaiian_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#National_Employment_Rates -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Native_Hawaiian_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#National_Employment_Rates">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#National_Economy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Native_Hawaiian_Race_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Native_Hawaiian_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -1478,6 +2189,20 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Neighborhood_Recreational_Center">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Physical_Environment"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Neighborhood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#New_Economy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#New_Economy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Economy"/>
     </owl:Class>
     
 
@@ -1485,14 +2210,53 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Nutrition -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Nutrition">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Weight"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002608"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002608"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Food_Security"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002608"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poverty"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Nutritional_Health_Literacy -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Nutritional_Health_Literacy">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Literacy"/>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Nutritious_Diet -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Nutritious_Diet"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Nutritious_Diet">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Access_to_Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1520,18 +2284,30 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Overcrowding_in_Home -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Overcrowded_Household -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Overcrowding_in_Home">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Overcrowded_Household">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Crime_Against_Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Pacific_Islander_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Pacific_Islander_Race_Identity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Pacific_Islander_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Pacific_Islander_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -1539,7 +2315,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Palliative_Health_Service -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Palliative_Health_Service">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
@@ -1556,6 +2332,12 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Part_Time_Employed">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Employment_Status"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Lower_Socioeconomic_Class"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1563,7 +2345,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Participation_in_Physical_Activity -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Participation_in_Physical_Activity">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Behavior"/>
     </owl:Class>
     
 
@@ -1578,13 +2360,28 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Patient_Engagement -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Patient_Engagement"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Patient_Engagement">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Patient_Safety -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Patient_Safety"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Patient_Safety">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Healthcare_System"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Quality_Health_Care_Intervention"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -1598,7 +2395,9 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Personal_Health_Management -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Personal_Health_Management"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Personal_Health_Management">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
     
 
 
@@ -1613,7 +2412,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Physical_Environment -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Physical_Environment">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -1621,7 +2420,25 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Physical_Fitness -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Physical_Fitness">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Nutrition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Participation_in_Physical_Activity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Sleep_Behavior"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1653,6 +2470,14 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Pollutant -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Pollutant">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Toxins"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Pollution -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Pollution">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Environmental_Determinant"/>
     </owl:Class>
     
@@ -1661,7 +2486,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Residence_Quality"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1669,7 +2500,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Poor_Housing_Condition">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Residence_Quality"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -1692,14 +2523,33 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Poverty -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Poverty"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Poverty">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Welfare"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Food_Security"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Inequities"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Preventive_Health_Service -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Preventive_Health_Service">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
@@ -1712,10 +2562,35 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Private_Grade_School -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Private_Grade_School">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Private_Learning_Institution"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Private_Health_Insurance -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Private_Health_Insurance">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Healthcare_Coverage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Private_Learning_Institution -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Private_Learning_Institution">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Learning_Institution"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Private_University -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Private_University">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Private_Learning_Institution"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#University_Learning_Institution"/>
     </owl:Class>
     
 
@@ -1747,7 +2622,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Psychosocial_Factor -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Psychosocial_Factor">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1755,7 +2635,21 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Psychosocial_Work_Factor -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Psychosocial_Work_Factor">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Workplace_Enviornment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:changeNote>would this be a type of PsychoSocial Factor?</skos:changeNote>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Public_Grade_School -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Public_Grade_School">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Public_School_Learning_Institution"/>
     </owl:Class>
     
 
@@ -1771,7 +2665,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Public_Policy -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Public_Policy">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1784,28 +2683,46 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Public_University -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Public_University">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Public_School_Learning_Institution"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#University_Learning_Institution"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Quality_Health_Care_Intervention -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_Health_Care_Intervention"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_Health_Care_Intervention">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Patient_Safety"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Quality_of_Healthcare -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_of_Healthcare"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_of_Healthcare">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Quality_of_Life -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_of_Life"/>
-    
-
-
-    <!-- http://sbmi.uth.edu/ontology/3m#Race -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Quality_of_Life">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Mortality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:definition>&quot;an individual&apos;s perception of their position in life in the context of the culture and value systems in which they live and in relation to their goals, expectations, standards and concerns&quot; - WHO</skos:definition>
     </owl:Class>
     
 
@@ -1814,6 +2731,14 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Race_Discrimination">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Discrimination"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Racial_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Racial_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
     </owl:Class>
     
 
@@ -1830,14 +2755,6 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Rectal_Cancer_Screening_Test">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Cancer_Screening"/>
-    </owl:Class>
-    
-
-
-    <!-- http://sbmi.uth.edu/ontology/3m#Reduce_Spending -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Reduce_Spending">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Budgeting"/>
     </owl:Class>
     
 
@@ -1869,7 +2786,15 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Rehabilitative_Health_Service -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Rehabilitative_Health_Service">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Relative_Location -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Relative_Location">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Geographical_Location"/>
     </owl:Class>
     
 
@@ -1890,10 +2815,60 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Religious_Diet_Behavior -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Religious_Diet_Behavior">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Dietary_Behavior"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Residence_Quality -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residence_Quality">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Residential_Crowding -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Crowding">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Safety"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Residential_Energy_Performance -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Energy_Performance">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Residential_Heating_Quality -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Heating_Quality">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Residential_Insulation_Quality -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Insulation_Quality">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -1901,7 +2876,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Residential_Location -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Location">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Geographical_Location"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Transportation_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1909,7 +2890,36 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Residential_Safety -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Residential_Safety">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Mold_Presence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Neighborhood"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Poor_Energy_Performance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Location"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Unrepaired_Damages_to_Property"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1941,7 +2951,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Routine_Physical_Exam -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Routine_Physical_Exam">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
@@ -1980,7 +2990,9 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Sexual_Activity -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sexual_Activity"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sexual_Activity">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+    </owl:Class>
     
 
 
@@ -1994,7 +3006,14 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Sexual_Orientation -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sexual_Orientation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Behavioral_Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -2017,41 +3036,96 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Sexual_Transmitted_Infection_Screening -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sexual_Transmitted_Infection_Screening">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Service"/>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Pelvic_Exam"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Care_Service"/>
     </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Sleep_Cycle -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Silent_Generation -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sleep_Cycle">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Silent_Generation">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Generational_Age"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Sleep_Behavior -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sleep_Behavior">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Behavior"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002334"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Dietary_Behavior"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:altLabel>Sleep Cycle</skos:altLabel>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Class -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Class"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Class">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Socioeconomic_Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Construct -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Construct"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Construct">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Determinants_of_Health -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Determinants_of_Health"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Determinants_of_Health">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Micro_Level_Determinant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Exclusion -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Exclusion">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Support"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2059,7 +3133,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Network -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Network">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Psychosocial_Factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2067,7 +3147,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Security_Benefits -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Security_Benefits">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Government_Programs"/>
     </owl:Class>
     
 
@@ -2075,7 +3155,13 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Support -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Support">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Psychosocial_Factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2083,20 +3169,37 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Social_Welfare -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Social_Welfare">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Macro_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Government_Programs"/>
     </owl:Class>
     
 
 
     <!-- http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sociocultural_Norm">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Individual_Lifestyle"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Socioeconomic_Position -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Socioeconomic_Status -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Socioeconomic_Position"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Socioeconomic_Status">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Social_Class"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <skos:altLabel>Socioeconomic Position</skos:altLabel>
+    </owl:Class>
     
 
 
@@ -2104,6 +3207,14 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Spanish_Language">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Language"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Spending_Reduction -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Spending_Reduction">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Budgeting"/>
     </owl:Class>
     
 
@@ -2135,7 +3246,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Sufficient_Heating -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sufficient_Heating">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Good_Residence_Quality"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Heating_Quality"/>
     </owl:Class>
     
 
@@ -2143,7 +3254,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Sufficient_Ventilation -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Sufficient_Ventilation">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Good_Residence_Quality"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Ventillation_Quality"/>
     </owl:Class>
     
 
@@ -2212,9 +3323,9 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Tobacco_Use_Dependence -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Tobacco_Addiction -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Tobacco_Use_Dependence">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Tobacco_Addiction">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Addiction"/>
     </owl:Class>
     
@@ -2223,7 +3334,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Toxic_Masculinity -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Toxic_Masculinity">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Masculinity"/>
     </owl:Class>
     
 
@@ -2231,7 +3342,7 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Transportation -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Transportation">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
     </owl:Class>
     
 
@@ -2239,7 +3350,12 @@
     <!-- http://sbmi.uth.edu/ontology/3m#Transportation_Quality -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Transportation_Quality">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2264,6 +3380,12 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Unemployment">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Employment_Status"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002559"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#History_of_Incarceration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2318,7 +3440,14 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Vaccine -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Vaccine"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Vaccine">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002566"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Health_Outcome"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -2330,10 +3459,46 @@
     
 
 
+    <!-- http://sbmi.uth.edu/ontology/3m#Vegetarian_Diet_Behavior -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Vegetarian_Diet_Behavior">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Dietary_Behavior"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Ventillation_Quality -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Ventillation_Quality">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residence_Quality"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#Residential_Safety"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Virtue -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Virtue">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+    </owl:Class>
+    
+
+
     <!-- http://sbmi.uth.edu/ontology/3m#Walkability -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Walkability">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Meso_Level_Determinant"/>
+        <dc:source>https://en.wikipedia.org/wiki/Walkability</dc:source>
+        <rdfs:isDefinedBy>measure of how friendly an area is for walking.</rdfs:isDefinedBy>
     </owl:Class>
     
 
@@ -2342,6 +3507,14 @@
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Water_Policy">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Public_Policy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#Water_Quality -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Water_Quality">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
     </owl:Class>
     
 
@@ -2362,10 +3535,18 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#White_Race -->
+    <!-- http://sbmi.uth.edu/ontology/3m#White_Collar_Worker -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#White_Race">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Race"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#White_Collar_Worker">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Working_Individual"/>
+    </owl:Class>
+    
+
+
+    <!-- http://sbmi.uth.edu/ontology/3m#White_Race_Identity -->
+
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#White_Race_Identity">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Racial_Identity"/>
     </owl:Class>
     
 
@@ -2396,7 +3577,14 @@
 
     <!-- http://sbmi.uth.edu/ontology/3m#Working_Individual -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Working_Individual"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Working_Individual">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://sbmi.uth.edu/ontology/3m#National_Employment_Rates"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
     
 
 
@@ -2408,9 +3596,9 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Workplace -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Workplace_Enviornment -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Workplace">
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Workplace_Enviornment">
         <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Physical_Environment"/>
     </owl:Class>
     
@@ -2440,14 +3628,6 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Chief_Executive_Officer_(CEO) -->
-
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Chief_Executive_Officer_(CEO)">
-        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Working_Individual"/>
-    </owl:Class>
-    
-
-
     <!-- http://sbmi.uth.edu/ontology/3m#Controlled_Substances_Act_(CSA) -->
 
     <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Controlled_Substances_Act_(CSA)">
@@ -2456,9 +3636,11 @@
     
 
 
-    <!-- http://sbmi.uth.edu/ontology/3m#Gross_Domestic_Product_(GDP) -->
+    <!-- http://sbmi.uth.edu/ontology/3m#Femininity‎ -->
 
-    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Gross_Domestic_Product_(GDP)"/>
+    <owl:Class rdf:about="http://sbmi.uth.edu/ontology/3m#Femininity‎">
+        <rdfs:subClassOf rdf:resource="http://sbmi.uth.edu/ontology/3m#Gender_Attitude"/>
+    </owl:Class>
 </rdf:RDF>
 
 
