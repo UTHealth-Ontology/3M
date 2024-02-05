@@ -9,3 +9,5 @@ This OWL2 ontology models various concepts across a wide spectrum of social and 
 Under development
 
 
+### License
+ 3M © 2021 by Daniela Dally and Muhammad Amith is licensed under CC BY 4.0 
