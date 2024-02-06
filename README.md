@@ -1,4 +1,4 @@
-# 3M
+# 3M Ontology
 ## an ontology expressing social and economic determinants on health
 
 authored by Daniela Dally under Muhammad "Tuan" Amith supervision, with contributions by Rebecca Mauldin and LaTisha Thomas.
@@ -10,4 +10,4 @@ Under development
 
 
 ### License
- 3M © 2021 by Daniela Dally and Muhammad Amith is licensed under CC BY 4.0 
+ 3M Ontology © 2021 by Daniela Dally and Muhammad Amith is licensed under CC BY 4.0 
